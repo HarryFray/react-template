@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from '@mui/material/Button'
 import styled from 'styled-components'
-import { Auth } from 'aws-amplify'
+// import { Auth } from 'aws-amplify'
 import { useNavigate } from 'react-router-dom'
 
 import useGlobalState from '../global/GlobalSate'
@@ -44,13 +44,14 @@ const Project = (): JSX.Element => {
   const { userName } = useGlobalState()
 
   const handleSignOut = async (): Promise<any> => {
-    await Auth.signOut()
-      .then(() => {
-        navigate('/')
-      })
-      .catch((error) => {
-        console.log('error signing out: ', error)
-      })
+    navigate('/')
+    // await Auth.signOut()
+    //   .then(() => {
+    //     navigate('/')
+    //   })
+    //   .catch((error) => {
+    //     console.log('error signing out: ', error)
+    //   })
   }
 
   return (

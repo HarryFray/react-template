@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom'
-import { Auth } from 'aws-amplify'
+import React, { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+// import { Auth } from 'aws-amplify'
 import CircularProgress from '@mui/material/CircularProgress'
 import styled from 'styled-components'
 
@@ -28,50 +28,50 @@ const App = (): JSX.Element => {
   // const [user, setUser] = useState({})
   const [loading, setLoading] = useState(false)
 
-  const navigate = useNavigate()
-  const { pathname } = useLocation()
+  // const navigate = useNavigate()
+  // const { pathname } = useLocation()
 
-  useEffect(() => {
-    const navigateBasedOnUserAuthStatus = async (): Promise<any> => {
-      setLoading(true)
-      try {
-        await Auth.currentAuthenticatedUser()
-        console.log('User is signed in')
-        // DIRECT USER INTO AUTHED ROUTES IF SIGNED IN
-        if (pathname === '/' || pathname === '/auth') {
-          navigate('/my-project')
-        }
-        setLoading(false)
-      } catch {
-        console.log('User is not signed in')
-        // KICK USER OUT OF AUTHED ROUTES IF NOT SIGNED IN
-        if (pathname === '/my-project') {
-          navigate('/')
-        }
-        setLoading(false)
-      }
-    }
+  // useEffect(() => {
+  //   const navigateBasedOnUserAuthStatus = async (): Promise<any> => {
+  //     setLoading(true)
+  //     try {
+  //       await Auth.currentAuthenticatedUser()
+  //       console.log('User is signed in')
+  //       // DIRECT USER INTO AUTHED ROUTES IF SIGNED IN
+  //       if (pathname === '/' || pathname === '/auth') {
+  //         navigate('/my-project')
+  //       }
+  //       setLoading(false)
+  //     } catch {
+  //       console.log('User is not signed in')
+  //       // KICK USER OUT OF AUTHED ROUTES IF NOT SIGNED IN
+  //       if (pathname === '/my-project') {
+  //         navigate('/')
+  //       }
+  //       setLoading(false)
+  //     }
+  //   }
 
-    navigateBasedOnUserAuthStatus()
-      .then(() => {
-        console.log('Navigated based on user auth status')
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [navigate, pathname])
+  //   navigateBasedOnUserAuthStatus()
+  //     .then(() => {
+  //       console.log('Navigated based on user auth status')
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // }, [navigate, pathname])
 
   // CHECKS IF USER IS SIGNED IN AND SETS USER STATE
-  useEffect(() => {
-    Auth.currentAuthenticatedUser({ bypassCache: true })
-      .then((user) => {
-        console.log({ user })
-        // setUser(user)
-      })
-      .catch((err) => {
-        console.log({ err })
-      })
-  }, [])
+  // useEffect(() => {
+  //   Auth.currentAuthenticatedUser({ bypassCache: true })
+  //     .then((user) => {
+  //       console.log({ user })
+  //       // setUser(user)
+  //     })
+  //     .catch((err) => {
+  //       console.log({ err })
+  //     })
+  // }, [])
 
   return (
     <GlobalTheme>

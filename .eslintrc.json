@@ -20,5 +20,10 @@
     ],
     "rules": {
         "react/no-unescaped-entities": 0
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+          }
     }
 }

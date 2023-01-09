@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import { Auth } from 'aws-amplify'
-import { useLocation, useNavigate } from 'react-router-dom'
+// import { Auth } from 'aws-amplify'
+import { useNavigate } from 'react-router-dom'
 
 const StyledAuthentication = styled.div`
   display: flex;
@@ -38,50 +38,53 @@ const Authentication = (): JSX.Element => {
   const [code, setCode] = useState('')
 
   const navigate = useNavigate()
-  const { pathname } = useLocation()
+  // const { pathname } = useLocation()
 
   // NAVIGATES USER TO PROPER AUTH FLOW FROM LANDING PAGE BUTTONS
-  useEffect(() => {
-    if (pathname.includes('sign-up')) {
-      setAuthFormInView('SIGN_UP')
-    } else if (pathname.includes('sign-in')) {
-      setAuthFormInView('SIGN_IN')
-    }
-  }, [pathname])
+  // useEffect(() => {
+  //   if (pathname.includes('sign-up')) {
+  //     setAuthFormInView('SIGN_UP')
+  //   } else if (pathname.includes('sign-in')) {
+  //     setAuthFormInView('SIGN_IN')
+  //   }
+  // }, [pathname])
 
   const handleSignUpUser = async (): Promise<any> => {
-    try {
-      await Auth.signUp({
-        username: userEmail,
-        password,
-        attributes: { email: userEmail },
-        autoSignIn: { enabled: true }
-      }).then(() => {
-        setAuthFormInView('CONFIRM_EMAIL')
-      })
-    } catch (error) {
-      console.log('error signing up:', error)
-    }
+    setAuthFormInView('CONFIRM_EMAIL')
+    // try {
+    //   await Auth.signUp({
+    //     username: userEmail,
+    //     password,
+    //     attributes: { email: userEmail },
+    //     autoSignIn: { enabled: true }
+    //   }).then(() => {
+    //     setAuthFormInView('CONFIRM_EMAIL')
+    //   })
+    // } catch (error) {
+    //   console.log('error signing up:', error)
+    // }
   }
 
   const handleConfirmSignUpUser = async (): Promise<any> => {
-    try {
-      await Auth.confirmSignUp(userEmail, code).then(() => {
-        navigate('/my-project')
-      })
-    } catch (error) {
-      console.log('error confirming sign up', error)
-    }
+    navigate('/my-project')
+    // try {
+    //   await Auth.confirmSignUp(userEmail, code).then(() => {
+    //     navigate('/my-project')
+    //   })
+    // } catch (error) {
+    //   console.log('error confirming sign up', error)
+    // }
   }
 
   const handleSignInUser = async (): Promise<any> => {
-    try {
-      await Auth.signIn(userEmail, password).then(() => {
-        navigate('/my-project')
-      })
-    } catch (error) {
-      console.log('error signing in', error)
-    }
+    navigate('/my-project')
+    // try {
+    //   await Auth.signIn(userEmail, password).then(() => {
+    //     navigate('/my-project')
+    //   })
+    // } catch (error) {
+    //   console.log('error signing in', error)
+    // }
   }
 
   return (
