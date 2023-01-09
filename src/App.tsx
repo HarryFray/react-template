@@ -9,7 +9,6 @@ import GlobalTypography from './global/GlobalTypography'
 
 import LandingPage from './pages/Landing'
 import AuthPage from './pages/Auth'
-import ProjectSetUpPage from './pages/ProjectSetup'
 import ProjectPage from './pages/Project'
 
 const StyledApp = styled.div`
@@ -87,7 +86,6 @@ const App = (): JSX.Element => {
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/my-project" element={<ProjectPage />} />
-              <Route path="/project-setup" element={<ProjectSetUpPage />} />
               <Route path="/auth/*" element={<AuthPage />} />
             </Routes>
           )}

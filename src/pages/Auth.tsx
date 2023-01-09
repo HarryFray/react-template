@@ -67,7 +67,7 @@ const Authentication = (): JSX.Element => {
   const handleConfirmSignUpUser = async (): Promise<any> => {
     try {
       await Auth.confirmSignUp(userEmail, code).then(() => {
-        navigate('/project-setup')
+        navigate('/my-project')
       })
     } catch (error) {
       console.log('error confirming sign up', error)
@@ -86,7 +86,7 @@ const Authentication = (): JSX.Element => {
 
   return (
     <StyledAuthentication>
-      <h1 className="heading-1">Accountabilibuddy</h1>
+      <h1 className="heading-1">Auth</h1>
       {authFormInView === 'SIGN_UP' && (
         <>
           <h3 className="heading-2">
